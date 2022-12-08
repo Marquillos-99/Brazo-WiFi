@@ -32,12 +32,16 @@ void setup() {
 
 void loop() {
   uint8_t i;
+  Serial.print("i fuera: ");
+  Serial.println(i);  
   //check if there are any new clients
   if (server.hasClient()) {
     for (i = 0; i < MAX_SRV_CLIENTS; i++) {
       //find free/disconnected spot
       Serial.print("MAX CLIENTS: ");
-      Serial.println(MAX_SRV_CLIENTS);      
+      Serial.println(MAX_SRV_CLIENTS); 
+      Serial.print("i dentro: ");
+      Serial.println(i);       
       if (!serverClients[i] || !serverClients[i].connected()) {
         if (serverClients[i]) {
           serverClients[i].stop();
@@ -45,9 +49,6 @@ void loop() {
         serverClients[i] = server.available();
         Serial.println("New client: ");// Serial.println(i);
         break;
-      }
-      if (i==2){
-        i=i--;
       }
     }
     //no free/disconnected spot so reject
@@ -58,24 +59,18 @@ void loop() {
     }
   }
   //check clients for data
-  for (i = 0; i < MAX_SRV_CLIENTS;i++) {
-    if (serverClients[i] && serverClients[i].connected()) {
-      if (serverClients[i].available()) {
+ 
+  if (serverClients[1].available() && serverClients[1].connected()) {
         //get data from the telnet client and push it to the UART
-        while (serverClients[i].available()) {
-          Serial.print("Punto read: ");                                      
-          Serial.println(serverClients[i].read()); 
-          valores[i]=serverClients[i].read();
-          delay(200);
-          Serial.println("valores leidos:");
-          Serial.println(valores[0]);
-          Serial.println(valores[1]);
-          Serial.println(valores[2]);
-        }
-        if (i==2){
-          i=i--;
-        }
-      }
+    for (int j=0; j <= 2; j++) {
+      Serial.print("iterator: ");
+      Serial.println(j);
+      Serial.print("Punto read: ");                                      
+      Serial.println(serverClients[1].read()); 
+      valores[j]=serverClients[1].read();
+      Serial.print("valores leidos: ");
+      Serial.println(valores[j]);
+      Serial.println("----------------------------------------------------");
     }
   }
   //check UART for da ta
