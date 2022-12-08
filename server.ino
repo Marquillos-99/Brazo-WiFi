@@ -39,21 +39,24 @@ void loop() {
       } 
       Serial.println(server.available());
       serverClients[i] = server.available();
-      Serial.println("New client: ");// Serial.println(i);        
+      Serial.println("New client: ");// Serial.println(i);
+               
+      Serial.print("Clients: ");
+      Serial.println(serverClients[i]);
+      Serial.print("Clients read: ");
+      Serial.println(serverClients[i].read());
+      
+      for (int j=0; j <= 2; j++) {
+        Serial.print("iterator: ");
+        Serial.println(j);
+        Serial.print("Punto read: ");                                      
+        Serial.println(serverClients[i].read()); 
+        valores[j]=serverClients[i].read();
+        Serial.print("valores leidos: ");
+        Serial.println(valores[j]);
+        Serial.println("----------------------------------------------------");
+      }     
     }
   }
-  
-  if (serverClients[i].available() && serverClients[i].connected()) {
-        //get data from the telnet client and push it to the UART
-    for (int j=0; j <= 2; j++) {
-      Serial.print("iterator: ");
-      Serial.println(j);
-      Serial.print("Punto read: ");                                      
-      Serial.println(serverClients[i].read()); 
-      valores[j]=serverClients[i].read();
-      Serial.print("valores leidos: ");
-      Serial.println(valores[j]);
-      Serial.println("----------------------------------------------------");
-    }
-  }
+ 
 }
