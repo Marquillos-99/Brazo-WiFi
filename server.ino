@@ -37,26 +37,28 @@ void loop() {
       if (serverClients[i]) {
         serverClients[i].stop();
       } 
-      Serial.println(server.available());
       serverClients[i] = server.available();
-      Serial.println("New client: ");// Serial.println(i);
-               
-      Serial.print("Clients: ");
-      Serial.println(serverClients[i]);
-      Serial.print("Clients read: ");
-      Serial.println(serverClients[i].read());
+      Serial.println("New client ");// Serial.println(i); 
+
+      Serial.print("Valor del uint8 before: ");
+      Serial.println(i); 
       
-      for (int j=0; j <= 2; j++) {
+      Serial.print("Connected 2: ");
+      Serial.println(serverClients[i].connected());        
+    }  
+
+      Serial.print("Valor del uint8 after: ");
+      Serial.println(i);
+      for (uint8_t j=0; j <= 2; j++) {
         Serial.print("iterator: ");
         Serial.println(j);
         Serial.print("Punto read: ");                                      
-        Serial.println(serverClients[i].read()); 
-        valores[j]=serverClients[i].read();
-        Serial.print("valores leidos: ");
+        Serial.println(serverClients[0].read()); 
+        valores[j]=serverClients[0].read();
+        Serial.print("valor asignado: ");
         Serial.println(valores[j]);
         Serial.println("----------------------------------------------------");
-      }     
-    }
+      }
   }
- 
+  
 }
