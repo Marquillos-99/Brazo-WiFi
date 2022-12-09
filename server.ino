@@ -49,16 +49,18 @@ void loop() {
 
       Serial.print("Valor del uint8 after: ");
       Serial.println(i);
-      for (uint8_t j=0; j <= 2; j++) {
-        Serial.print("iterator: ");
-        Serial.println(j);
-        Serial.print("Punto read: ");                                      
-        Serial.println(serverClients[0].read()); 
-        valores[j]=serverClients[0].read();
-        Serial.print("valor asignado: ");
-        Serial.println(valores[j]);
-        Serial.println("----------------------------------------------------");
-      }
+        for (uint8_t j=0; j <= 2; j++) {
+          Serial.print("iterator: ");
+          Serial.println(j);
+          // Serial.print("Punto read: ");                                      
+          // Serial.println(serverClients[0].read()); 
+            valores[j]=serverClients[0].read();
+            Serial.print("valor asignado: ");
+            Serial.println(valores[j]);
+            Serial.println("----------------------------------------------------");
+          
+       }
+      
   }
   
 }
